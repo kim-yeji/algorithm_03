@@ -14,10 +14,10 @@ public class Main {
 	
 			list = FileReading.readFileForList(cnt);
 			Sorting sort = new Sorting(list);
-			sort.print();
-			sort.sorting("merge");
-			System.out.println("============== " + cnt + "개 테스트 ===============");
-			sort.print();
+//			sort.print();
+			sort.sorting("merge");	//정렬
+			sort.printCount();		//반복회수 출력
+			sort.print();			//정렬배열 출력
 //			sort.mergeSort();
 //			list = FileReading.readFileForList(cnt);
 //			list.mergeSort();

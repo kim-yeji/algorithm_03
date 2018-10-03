@@ -3,12 +3,19 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class Sorting {
-	private int[] sorted;
+	private int[] sorted;	//정렬 후 결과배열
+	private int[] paramArr;	//원배열
+	private int count;		//반복회수
+	
+	public void printCount(){
+		System.out.println("반복회수: "+count);
+	}
 	
 	public Sorting(Integer[] list){
 		sorted = new int[list.length];
+		paramArr = new int[list.length];
 		for(int i = 0; i < list.length; i++){
-			sorted[i] = list[i].intValue();
+			paramArr[i] = list[i].intValue();
 		}
 	}
 	
@@ -18,7 +25,7 @@ public class Sorting {
 	
 	public void sorting(String sort){
 		if("merge".equals(sort)) {
-			mergeSort(0, sorted.length-1, sorted);
+			mergeSort(0, paramArr.length-1, paramArr);
 		} else if("quick".equals(sort)) {
 			
 		}
@@ -26,26 +33,23 @@ public class Sorting {
 
 	///////////////////////////////////// merge sort/////////////////////////////////////
 
-//	public int[] sorted = new int[1000];
-
 	public void mergeSort(int left, int right, int[] arr) {
 
 		int mid;
 		if (left < right) {
-			if(left<arr[arr.length-8]) {
-				insertionSort(arr);
-			}else {
+//			if(left<arr[arr.length-8]) {
+//				insertionSort(arr);
+//			}else {
 				mid = (left + right) / 2;
 				mergeSort(left, mid, arr);
 				mergeSort(mid + 1, right, arr);
 				merge(left, mid, right, arr);
-			}
+//			}
 		}
 	}
 	
 
 	public void merge(int left, int mid, int right, int[] arr) {
-		int count=0;
 		int l = left;
 		int m = mid + 1;
 		int k = left;
@@ -62,7 +66,8 @@ public class Sorting {
 			} else {
 				sorted[k] = arr[m++];
 			}
-
+			
+			count++;
 			k++;
 		}
 
@@ -71,13 +76,7 @@ public class Sorting {
 			count++;
 		}
 
-		System.out.print("반복횟수 = "+count);
-		
-//		for (int i = 0; i < arr.length; i++) {
-//			System.out.print(arr[i] + " ");
-//		}
-
-		System.out.println();
+//		System.out.println("반복횟수 = "+count);
 	}
 
 	///////////////////////////////////// insertion sort/////////////////////////////////////
