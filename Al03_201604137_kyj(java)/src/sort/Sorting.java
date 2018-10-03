@@ -2,12 +2,12 @@ package sort;
 import java.util.Random;
 
 public class Sorting {
-	private int[] sorted;	//Á¤·Ä ÈÄ °á°ú¹è¿­
-	private int[] paramArr;	//¿ø¹è¿­
-	private int count;		//¹İº¹È¸¼ö
+	private int[] sorted;	//ì •ë ¬ í›„ ê²°ê³¼ë°°ì—´
+	private int[] paramArr;	//ì›ë°°ì—´
+	private int count;		//ë°˜ë³µíšŒìˆ˜
 	
 	public void printCount(){
-		System.out.println("¹İº¹È¸¼ö: "+count);
+		System.out.println("ë°˜ë³µíšŒìˆ˜: "+count);
 	}
 	
 	public Sorting(Integer[] list){
@@ -17,12 +17,6 @@ public class Sorting {
 			paramArr[i] = list[i].intValue();
 		}
 	}
-	
-//	public void originPrint(){
-//		for(int i=0; i<sorted.length; i++){
-//			System.out.println((i+1)+":"+paramArr[i]);
-//		}
-//	}
 	
 	public void sortingPrint(){
 		for(int i=0; i<sorted.length; i++){
@@ -54,7 +48,7 @@ public class Sorting {
 			if(right - left < 8) {
 				insertionSort(left, right, arr);
 				count++;
-				System.out.println("- »ğÀÔÁ¤·Ä -");
+				System.out.println("- ì‚½ì…ì •ë ¬ -");
 			}else {
 				mid = (left + right) / 2;
 				mergeSort(left, mid, arr);
@@ -93,7 +87,7 @@ public class Sorting {
 	}
 
 	///////////////////////////////////// insertion sort/////////////////////////////////////
-	public void insertionSort(int[] data) { //¿øº»
+	public void insertionSort(int[] data) { //ì›ë³¸
 		for (int index = 1; index < data.length; index++) {
 			int temp = data[index];
 			int aux = index - 1;
@@ -106,7 +100,7 @@ public class Sorting {
 		}
 	}
 	
-	public void insertionSort(int left, int right, int[] data) { //leftºÎÅÍ right±îÁö Á¤·Ä
+	public void insertionSort(int left, int right, int[] data) { //leftë¶€í„° rightê¹Œì§€ ì •ë ¬
 		for (int index = left+1; index < right+1; index++) {
 			int temp = data[index];
 			int aux = index - 1;
@@ -175,7 +169,7 @@ public class Sorting {
 	            arr[left] = arr[right];
 	            arr[right] = temp;
 	        }else {
-                arr[left] = arr[right]; // pivotÀÌ ÀÚ½ÅÀÇ ÀÚ¸®¸¦ Ã£¾Æ°¡´Â °úÁ¤
+                arr[left] = arr[right]; // pivotì´ ìì‹ ì˜ ìë¦¬ë¥¼ ì°¾ì•„ê°€ëŠ” ê³¼ì •
                 arr[right] = pivot;
             }
 	    }
