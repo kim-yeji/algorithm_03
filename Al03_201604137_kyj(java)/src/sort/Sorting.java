@@ -81,7 +81,6 @@ public class Sorting {
 
 		for (int i = left; i < right + 1; i++) {
 			arr[i] = sorted[i];
-			count++;
 		}
 
 //		System.out.println("¹Ýº¹È½¼ö = "+count);
