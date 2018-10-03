@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Sorting {
 	private int[] sorted;
-	int count=0;
+	private int count=0;
 	
 	public Sorting(Integer[] list){
 		sorted = new int[list.length];
