@@ -15,6 +15,14 @@ public class Sorting {
 	public void print(){
 		Arrays.stream(sorted).forEach(s -> System.out.println(s));
 	}
+	
+	public void sorting(String sort){
+		if("merge".equals(sort)) {
+			mergeSort(0, sorted.length-1, sorted);
+		} else if("quick".equals(sort)) {
+			
+		}
+	}
 
 	///////////////////////////////////// merge sort/////////////////////////////////////
 
