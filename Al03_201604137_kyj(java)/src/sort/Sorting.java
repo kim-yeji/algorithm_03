@@ -18,16 +18,22 @@ public class Sorting {
 		}
 	}
 	
-	public void originPrint(){
-		for(int i=0; i<sorted.length; i++){
-			System.out.println((i+1)+":"+paramArr[i]);
-		}
-	}
+//	public void originPrint(){
+//		for(int i=0; i<sorted.length; i++){
+//			System.out.println((i+1)+":"+paramArr[i]);
+//		}
+//	}
 	
 	public void sortingPrint(){
 		for(int i=0; i<sorted.length; i++){
 			System.out.println((i+1)+":"+sorted[i]);
 		}
+	}
+		
+	public void sortingPrint2(){
+		for(int i=0; i<paramArr.length; i++){
+			System.out.println((i+1)+":"+paramArr[i]);
+		}	
 //		Arrays.stream(sorted).forEach(s -> System.out.println(s));
 	}
 	
@@ -35,7 +41,7 @@ public class Sorting {
 		if("merge".equals(sort)) {
 			mergeSort(0, paramArr.length-1, paramArr);
 		} else if("quick".equals(sort)) {
-			
+			quickSort( paramArr,0, paramArr.length-1);
 		}
 	}
 
@@ -47,6 +53,7 @@ public class Sorting {
 		if (left < right) {
 			if(right - left < 8) {
 				insertionSort(left, right, arr);
+				count++;
 				System.out.println("- 삽입정렬 -");
 			}else {
 				mid = (left + right) / 2;
@@ -83,11 +90,10 @@ public class Sorting {
 			arr[i] = sorted[i];
 		}
 
-//		System.out.println("반복횟수 = "+count);
 	}
 
 	///////////////////////////////////// insertion sort/////////////////////////////////////
-	public void insertionSort(int[] data) {
+	public void insertionSort(int[] data) { //원본
 		for (int index = 1; index < data.length; index++) {
 			int temp = data[index];
 			int aux = index - 1;
@@ -100,7 +106,7 @@ public class Sorting {
 		}
 	}
 	
-	public void insertionSort(int left, int right, int[] data) {
+	public void insertionSort(int left, int right, int[] data) { //left부터 right까지 정렬
 		for (int index = left+1; index < right+1; index++) {
 			int temp = data[index];
 			int aux = index - 1;
@@ -114,10 +120,24 @@ public class Sorting {
 	}
 
 	///////////////////////////////////// quick sort/////////////////////////////////////
+	
+	public void quickSort(int arr[], int left, int right) {
+	 
+	    if (left < right) {
+//	        int pivotNewIndex = partition(arr, left, right);
+	    	int ranPivot = randomize_partition(arr, left, right);
+//	        quickSort(arr, left, pivotNewIndex - 1);
+//	        quickSort(arr, pivotNewIndex + 1, right);
+	        quickSort(arr, left, ranPivot - 1);
+	        quickSort(arr, ranPivot + 1, right);
+	    }
+	 
+	}
+	
+	
 	public int partition(int arr[], int left, int right) {
 		 
 		int pivot = arr[right];
-	    //int pivot = arr[(left + right) / 2];
 	 
 	    while (left < right) {
 	        while ((arr[left] < pivot) && (left < right))
@@ -130,8 +150,10 @@ public class Sorting {
 	            arr[left] = arr[right];
 	            arr[right] = temp;
 	        }
+
+
 	    }
-	 
+	    count++;
 	    return left;
 	}
 	
@@ -141,7 +163,6 @@ public class Sorting {
 		Random rand = new Random(System.currentTimeMillis());
 		int ranNum = Math.abs(rand.nextInt(100));
 		int pivot = arr[ranNum];
-	    //int pivot = arr[(left + right) / 2];
 	 
 	    while (left < right) {
 	        while ((arr[left] < pivot) && (left < right))
@@ -153,24 +174,16 @@ public class Sorting {
 	            int temp = arr[left];
 	            arr[left] = arr[right];
 	            arr[right] = temp;
-	        }
+	        }else {
+                arr[left] = arr[right]; // pivot이 자신의 자리를 찾아가는 과정
+                arr[right] = pivot;
+            }
 	    }
-	 
+	    count++;
 	    return left;
 	}
 	 
-	
-	 
-	public void quickSort(int arr[], int left, int right) {
-	 
-	    if (left < right) {
-	        // 값을 비교하고 로우와 하이를 이동시키면서 값의 교환이 이루어지는 함수
-	        int pivotNewIndex = partition(arr, left, right);
-	        quickSort(arr, left, pivotNewIndex - 1);
-	        quickSort(arr, pivotNewIndex + 1, right);
-	    }
-	 
-	}
+
 
 
 }
