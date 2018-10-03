@@ -1,5 +1,4 @@
 package sort;
-import java.util.Arrays;
 import java.util.Random;
 
 public class Sorting {
@@ -19,7 +18,13 @@ public class Sorting {
 		}
 	}
 	
-	public void print(){
+	public void originPrint(){
+		for(int i=0; i<sorted.length; i++){
+			System.out.println((i+1)+":"+paramArr[i]);
+		}
+	}
+	
+	public void sortingPrint(){
 		for(int i=0; i<sorted.length; i++){
 			System.out.println((i+1)+":"+sorted[i]);
 		}
@@ -40,8 +45,9 @@ public class Sorting {
 
 		int mid;
 		if (left < right) {
-			if(left + right < 8) {
-				insertionSort(arr);
+			if(right - left < 8) {
+				insertionSort(left, right, arr);
+				System.out.println("- »ðÀÔÁ¤·Ä -");
 			}else {
 				mid = (left + right) / 2;
 				mergeSort(left, mid, arr);
@@ -50,7 +56,6 @@ public class Sorting {
 			}
 		}
 	}
-	
 
 	public void merge(int left, int mid, int right, int[] arr) {
 		int l = left;
@@ -89,6 +94,19 @@ public class Sorting {
 			int aux = index - 1;
 
 			while ((aux >= 0) && (data[aux] > temp)) {
+				data[aux + 1] = data[aux];
+				aux--;
+			}
+			data[aux + 1] = temp;
+		}
+	}
+	
+	public void insertionSort(int left, int right, int[] data) {
+		for (int index = left+1; index < right+1; index++) {
+			int temp = data[index];
+			int aux = index - 1;
+
+			while ((aux >= left) && (data[aux] > temp)) {
 				data[aux + 1] = data[aux];
 				aux--;
 			}

@@ -9,18 +9,15 @@ public class Main {
 		String cnt = "";
 		
 		try {
-			cnt = "100";
+			cnt = "10";
 			System.out.println("============== " + cnt + "개 테스트 ===============");
 	
 			list = FileReading.readFileForList(cnt);
 			Sorting sort = new Sorting(list);
-//			sort.print();
+//			sort.originPrint();		//정렬배열 출력
 			sort.sorting("merge");	//정렬
 			sort.printCount();		//반복회수 출력
-			sort.print();			//정렬배열 출력
-//			sort.mergeSort();
-//			list = FileReading.readFileForList(cnt);
-//			list.mergeSort();
+			sort.sortingPrint();	//정렬배열 출력
 //	
 //			cnt = "1000";
 //			System.out.println("============== " + cnt + "개 테스트 ===============");
