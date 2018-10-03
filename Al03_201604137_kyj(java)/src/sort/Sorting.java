@@ -4,6 +4,7 @@ import java.util.Random;
 
 public class Sorting {
 	private int[] sorted;
+	int count=0;
 	
 	public Sorting(Integer[] list){
 		sorted = new int[list.length];
@@ -18,7 +19,7 @@ public class Sorting {
 	
 	public void sorting(String sort){
 		if("merge".equals(sort)) {
-			mergeSort(0, sorted.length-1, sorted);
+			mergeSort( sorted, 0, sorted.length-1);
 		} else if("quick".equals(sort)) {
 			
 		}
@@ -26,58 +27,39 @@ public class Sorting {
 
 	///////////////////////////////////// merge sort/////////////////////////////////////
 
-//	public int[] sorted = new int[1000];
 
-	public void mergeSort(int left, int right, int[] arr) {
-
-		int mid;
-		if (left < right) {
-			if(left<arr[arr.length-8]) {
-				insertionSort(arr);
-			}else {
-				mid = (left + right) / 2;
-				mergeSort(left, mid, arr);
-				mergeSort(mid + 1, right, arr);
-				merge(left, mid, right, arr);
+	public  void mergeSort(int arr[], int l, int r) {
+		if(l<r) {
+			
+			int mid = (l+r)/2;
+			mergeSort(arr, l, mid);
+			mergeSort(arr, mid+1, r);
+			merge(arr, l, mid, r);
 			}
-		}
-	}
-	
-
-	public void merge(int left, int mid, int right, int[] arr) {
-		int count=0;
-		int l = left;
-		int m = mid + 1;
-		int k = left;
-
-		while (l <= mid || m <= right) {
-			if (l <= mid && m <= right) {
-				if (arr[l] <= arr[m]) {
-					sorted[k] = arr[l++];
-				} else {
-					sorted[k] = arr[m++];
-				}
-			} else if (l <= mid && m > right) {
-				sorted[k] = arr[l++];
-			} else {
-				sorted[k] = arr[m++];
-			}
-
-			k++;
-		}
-
-		for (int i = left; i < right + 1; i++) {
-			arr[i] = sorted[i];
-			count++;
-		}
-
-		System.out.print("¹Ýº¹È½¼ö = "+count);
 		
-//		for (int i = 0; i < arr.length; i++) {
-//			System.out.print(arr[i] + " ");
-//		}
-
-		System.out.println();
+	}
+	public  void merge(int arr[], int l, int mid, int r) {
+		
+		int i = l;
+		int j = mid+1;
+		int k = l;
+		int temp[] = new int[arr.length];
+		while(i<=mid && j<=r) {
+			if(arr[i] < arr[j]) {
+				temp[k++] = arr[i++];
+				count++;
+			}else {
+				temp[k++] = arr[j++];
+				count++;
+			}
+		}
+		while(i<=mid)
+			temp[k++] = arr[i++];
+		while(j<=r)
+			temp[k++] = arr[j++];
+		for(int index=l; index<k; index++)
+			arr[index] = temp[index];
+		System.out.println("¹Ýº¹È½¼ö:"+count);
 	}
 
 	///////////////////////////////////// insertion sort/////////////////////////////////////
