@@ -1,11 +1,24 @@
 package sort;
+import java.util.Arrays;
 import java.util.Random;
 
 public class Sorting {
+	private int[] sorted;
+	
+	public Sorting(Integer[] list){
+		sorted = new int[list.length];
+		for(int i = 0; i < list.length; i++){
+			sorted[i] = list[i].intValue();
+		}
+	}
+	
+	public void print(){
+		Arrays.stream(sorted).forEach(s -> System.out.println(s));
+	}
 
 	///////////////////////////////////// merge sort/////////////////////////////////////
 
-	public int[] sorted = new int[1000];
+//	public int[] sorted = new int[1000];
 
 	public void mergeSort(int left, int right, int[] arr) {
 
@@ -19,7 +32,6 @@ public class Sorting {
 				mergeSort(mid + 1, right, arr);
 				merge(left, mid, right, arr);
 			}
-			
 		}
 	}
 	
