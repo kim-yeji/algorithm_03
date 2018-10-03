@@ -20,7 +20,10 @@ public class Sorting {
 	}
 	
 	public void print(){
-		Arrays.stream(sorted).forEach(s -> System.out.println(s));
+		for(int i=0; i<sorted.length; i++){
+			System.out.println((i+1)+":"+sorted[i]);
+		}
+//		Arrays.stream(sorted).forEach(s -> System.out.println(s));
 	}
 	
 	public void sorting(String sort){
@@ -37,14 +40,14 @@ public class Sorting {
 
 		int mid;
 		if (left < right) {
-//			if(left<arr[arr.length-8]) {
-//				insertionSort(arr);
-//			}else {
+			if(left + right < 8) {
+				insertionSort(arr);
+			}else {
 				mid = (left + right) / 2;
 				mergeSort(left, mid, arr);
 				mergeSort(mid + 1, right, arr);
 				merge(left, mid, right, arr);
-//			}
+			}
 		}
 	}
 	
