@@ -6,6 +6,7 @@ public class Sorting {
 	private int[] paramArr;	//원배열
 	private int count;		//반복회수
 	
+	
 	public void printCount(){
 		System.out.println("반복회수: "+count);
 	}
@@ -17,12 +18,6 @@ public class Sorting {
 			paramArr[i] = list[i].intValue();
 		}
 	}
-	
-//	public void originPrint(){
-//		for(int i=0; i<sorted.length; i++){
-//			System.out.println((i+1)+":"+paramArr[i]);
-//		}
-//	}
 	
 	public void sortingPrint(){
 		for(int i=0; i<sorted.length; i++){
@@ -54,7 +49,7 @@ public class Sorting {
 			if(right - left < 8) {
 				insertionSort(left, right, arr);
 				count++;
-				System.out.println("- 삽입정렬 -");
+//				System.out.println("- 삽입정렬 -");
 			}else {
 				mid = (left + right) / 2;
 				mergeSort(left, mid, arr);
@@ -131,9 +126,7 @@ public class Sorting {
 	        quickSort(arr, left, ranPivot - 1);
 	        quickSort(arr, ranPivot + 1, right);
 	    }
-	 
 	}
-	
 	
 	public int partition(int arr[], int left, int right) {
 		 
@@ -156,12 +149,12 @@ public class Sorting {
 	    count++;
 	    return left;
 	}
-	
+
 	
 	public int randomize_partition(int arr[], int left, int right) {
 		 
-		Random rand = new Random(System.currentTimeMillis());
-		int ranNum = Math.abs(rand.nextInt(100));
+		int ranNum = (int) (Math.random() * (right-left+1)) + left; 
+
 		int pivot = arr[ranNum];
 	 
 	    while (left < right) {
@@ -174,16 +167,11 @@ public class Sorting {
 	            int temp = arr[left];
 	            arr[left] = arr[right];
 	            arr[right] = temp;
-	        }else {
-                arr[left] = arr[right]; // pivot이 자신의 자리를 찾아가는 과정
-                arr[right] = pivot;
-            }
+	        }
+            
 	    }
 	    count++;
 	    return left;
 	}
 	 
-
-
-
 }
