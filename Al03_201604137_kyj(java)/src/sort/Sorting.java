@@ -2,12 +2,13 @@ package sort;
 import java.util.Random;
 
 public class Sorting {
-	private int[] sorted;	//ì •ë ¬ í›„ ê²°ê³¼ë°°ì—´
-	private int[] paramArr;	//ì›ë°°ì—´
-	private int count;		//ë°˜ë³µíšŒìˆ˜
+	private int[] sorted;	//Á¤·Ä ÈÄ °á°ú¹è¿­
+	private int[] paramArr;	//¿ø¹è¿­
+	private int count;		//¹İº¹È¸¼ö
+	
 	
 	public void printCount(){
-		System.out.println("ë°˜ë³µíšŒìˆ˜: "+count);
+		System.out.println("¹İº¹È¸¼ö: "+count);
 	}
 	
 	public Sorting(Integer[] list){
@@ -48,7 +49,7 @@ public class Sorting {
 			if(right - left < 8) {
 				insertionSort(left, right, arr);
 				count++;
-				System.out.println("- ì‚½ì…ì •ë ¬ -");
+//				System.out.println("- »ğÀÔÁ¤·Ä -");
 			}else {
 				mid = (left + right) / 2;
 				mergeSort(left, mid, arr);
@@ -87,7 +88,7 @@ public class Sorting {
 	}
 
 	///////////////////////////////////// insertion sort/////////////////////////////////////
-	public void insertionSort(int[] data) { //ì›ë³¸
+	public void insertionSort(int[] data) { //¿øº»
 		for (int index = 1; index < data.length; index++) {
 			int temp = data[index];
 			int aux = index - 1;
@@ -100,7 +101,7 @@ public class Sorting {
 		}
 	}
 	
-	public void insertionSort(int left, int right, int[] data) { //leftë¶€í„° rightê¹Œì§€ ì •ë ¬
+	public void insertionSort(int left, int right, int[] data) { //leftºÎÅÍ right±îÁö Á¤·Ä
 		for (int index = left+1; index < right+1; index++) {
 			int temp = data[index];
 			int aux = index - 1;
@@ -125,9 +126,7 @@ public class Sorting {
 	        quickSort(arr, left, ranPivot - 1);
 	        quickSort(arr, ranPivot + 1, right);
 	    }
-	 
 	}
-	
 	
 	public int partition(int arr[], int left, int right) {
 		 
@@ -150,12 +149,12 @@ public class Sorting {
 	    count++;
 	    return left;
 	}
-	
+
 	
 	public int randomize_partition(int arr[], int left, int right) {
 		 
-		Random rand = new Random(System.currentTimeMillis());
-		int ranNum = Math.abs(rand.nextInt(100));
+		int ranNum = (int) (Math.random() * (right-left+1)) + left; 
+
 		int pivot = arr[ranNum];
 	 
 	    while (left < right) {
@@ -168,16 +167,11 @@ public class Sorting {
 	            int temp = arr[left];
 	            arr[left] = arr[right];
 	            arr[right] = temp;
-	        }else {
-                arr[left] = arr[right]; // pivotì´ ìì‹ ì˜ ìë¦¬ë¥¼ ì°¾ì•„ê°€ëŠ” ê³¼ì •
-                arr[right] = pivot;
-            }
+	        }
+            
 	    }
 	    count++;
 	    return left;
 	}
 	 
-
-
-
 }
